@@ -20,7 +20,7 @@
     
                         <a href="#" title="" class="text-base font-medium text-black"> About Us </a>
     
-                        <a href="#" title="" class="text-base font-medium text-black"> Solutions </a>
+                        <a href="#" title="" class="text-base font-medium text-black"> Language </a>
     
                         <a href="#" title="" class="text-base font-medium text-black"> Pricing </a>
                     </div>
@@ -59,6 +59,7 @@
                 </nav>
             </div>
         </div>
+    {% tailwind_css %}
     </div>    
         
     <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 m-5">
@@ -66,69 +67,46 @@
             <h2 class="text-4xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Paraphrase Generator</h2>
         </div>
     </div>
-    {% comment %} <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
-    <div class="box-border h-32 w-32 p-4 border-4 tex"></div>
     
-<form method="post">
-    {% csrf_token %}
-    <div class="flex justify-center bg-indigo-100 m-9">
-        <div class="bg-gray-100 border border-gray-300 bg-left p-4 mr-4">
-        <h2 class="text-2xl font-bold leading-tight text-black sm:text-2xl lg:text-2xl">Our Sentence</h2>
-        <textarea class="w-full h-48 p-2 border border-gray-300" placeholder="Enter text here" id="input-text" name="input-text">{{ input_text }}</textarea>
-        </div>
-
-        <div class="bg-gray-100 border border-gray-300 bg-right p-4">
-        <h2 class="text-xl font-bold mb-4">Paraphrase</h2>
-        <textarea class="w-full h-48 p-2 border border-gray-300" placeholder="Enter text here" id="output-text" name="output-text" readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
-        </div>
-    </div>
-    <button type="submit" id="generate-btn">Generate</button>
-</form>
-
-
-
-    <div class="flex justify-center">
-        <div class="w-1/2 bg-gray-100 p-4 mr-4">
-          <h2 class="text-xl font-bold mb-4">Input Box</h2>
-          <textarea class="w-full h-64 p-2 border border-gray-300" placeholder="Enter text here"></textarea>
-        </div>
-        <div class="w-1/2 bg-gray-100 p-4">
-          <h2 class="text-xl font-bold mb-4">Output Box</h2>
-          <div class="output-textarea w-full h-64 p-2 border border-gray-300"></div>
-        </div>
-      </div>
-
-
-    <section class="py-10 bg-white sm:py-16 lg:py-20">
-        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-x-8 xl:gap-x-20">
-                <div class="flex items-start">
-                    <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="1"
-                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                    </svg>
-                    <div class="ml-6">
-                        <p class="text-base font-medium text-black/50">Call us</p>
-                        <p class="mt-4 text-xl font-medium text-gray-900">(316) 555-0116</p>
-                        <p class="mt-1 text-xl font-medium text-gray-900">(316) 555-0117</p>
+    <form method="post"> 
+        {% csrf_token %}
+        <div class="flex justify-center bg-white content-end sm:py-16 lg:py-20">
+            <div class="border border-gray-300 rounded-lg">
+                <div class="flex justify-between space-x-2">
+                    <div class="bg-gray-200 p-4 rounded-lg" style="width: 600px; height: 400px;">
+                        <p class="text-lg font-bold">Enter Text</p>
+                        <textarea id="input-text" name="input-text" class="border w-full p-4 resize-none" style=" height: 320px">{{ input_text }}</textarea>
+                    </div>
+                    
+                    <div class="bg-gray-200 p-4 rounded-lg" style="width: 600px; height: 400px;">
+                        <p class="text-lg font-bold">Paraphrase</p>
+                        <textarea id="output" name="output" class="border h-96 w-full p-4 resize-none" style=" height: 320px" readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
                     </div>
                 </div>
-    
+            </div>
+        </div>
+        
+        <section class="flex justify-center bg-white content-end sm:py=5 lg:py-10">
+          <button type="submit" id="generate-btn" class="inline-flex justify-center items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+            Generate
+          </button>
+        </section>
+    </form>
+
+
+
+    {% comment %} <section class="flex bg-center bg-white content-end sm:py-12 lg:py-20">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-x-8 xl:gap-x-20">
                 <div class="flex items-start">
                     <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                     <div class="ml-6">
                         <p class="text-base font-medium text-black/50">Email us</p>
-                        <p class="mt-4 text-xl font-medium text-gray-900">contact@example.com</p>
-                        <p class="mt-1 text-xl font-medium text-gray-900">support@example.com</p>
+                        <p class="mt-4 text-xl font-medium text-gray-900">nepaliparaphrase@gmail.com</p>
                     </div>
                 </div>
-    
                 <div class="flex items-start">
                     <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -136,11 +114,11 @@
                     </svg>
                     <div class="ml-6">
                         <p class="text-base font-medium text-black/50">Location</p>
-                        <p class="mt-4 text-xl font-medium leading-relaxed text-gray-900">8502 Preston Rd. Inglewood, Maine 98380, USA</p>
+                        <p class="mt-4 text-xl font-medium leading-relaxed text-gray-900">Pulchwok, Lalitpur, Nepal</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </section> {% endcomment %}
     
 </html>
