@@ -1,10 +1,10 @@
-body {
-    background-color: #f8f8f8;
+/* body {
+    background-color: #262525;
     font-family: Arial, sans-serif;
 }
 
 .menu-bar {
-    background-color: #333;
+    background-color: #b88c8c;
     position: fixed;
     top: 0;
     left: 0;
@@ -33,9 +33,9 @@ body {
 
 .menu-bar a:hover {
     background-color: #111;
-}
+} */
 
-.animated-heading {
+/* .animated-heading {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;
     color: #09e011;
@@ -43,9 +43,9 @@ body {
     text-align: center;
     margin-top: 100px;
     animation: zoom-in 1s ease-in-out;
-}
+} */
 
-@keyframes zoom-in {
+/* @keyframes zoom-in {
     0% {
         transform: scale(0);
         opacity: 0;
@@ -54,7 +54,7 @@ body {
         transform: scale(1);
         opacity: 1;
     }
-}
+} */
 
 .text-wrapper {
     display: flex;
@@ -68,7 +68,7 @@ body {
     padding: 10px;
     margin: 20px auto;
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid rgb(216, 214, 214);
     resize: none;
     font-size: 14px;
     margin-left: 20px;

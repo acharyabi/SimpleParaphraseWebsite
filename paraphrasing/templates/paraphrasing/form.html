@@ -1,33 +1,146 @@
-{% load static %}
+{% load static tailwind_tags%}
 
 <!DOCTYPE html>
-<html>
-<head>
-    <title>Generate Paraphrase</title>
-    <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <div class="menu-bar">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Contact</a></li>
-        </ul>
-    </div>
-    <h1 class="animated-heading">Generate Paraphrase</h1>
-    <form method="post">
-        {% csrf_token %}
-        <div class="textboxes-container">
-            <div class="text-wrapper">
-                <label for="input-text" style="margin-left: 15px;">Our Sentence:</label>
-                <textarea id="input-text" name="input-text">{{ input_text }}</textarea>
-            </div>
-            <div class="text-wrapper">
-                <label for="output-text" style="margin-left: 15px;">Paraphrase:</label>
-                <textarea id="output-text" name="output-text" readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
+<html lang="en">
+    
+    <head>
+        <title class=>Generate Paraphrase</title>
+        <meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% tailwind_css %}
+    </head>   
+         
+    <div class= "bg-gray-100 font-serif leading-normal tracking-normal">
+        <div class="bg-gray-100 border-b border-gray-200">
+            <div class="px-4 mx-auto sm:px-6 lg:px-8">
+                <nav class="relative flex items-center justify-between h-16 lg:h-20">
+                    <div class="hidden lg:flex lg:items-center lg:space-x-10">
+                        <a href="#" title="" class="text-base font-medium text-black"> Home </a>
+    
+                        <a href="#" title="" class="text-base font-medium text-black"> About Us </a>
+    
+                        <a href="#" title="" class="text-base font-medium text-black"> Solutions </a>
+    
+                        <a href="#" title="" class="text-base font-medium text-black"> Pricing </a>
+                    </div>
+    
+                    <div class="lg:absolute lg:-translate-x-1/2 lg:inset-y-5 lg:left-1/2">
+                        <div class="flex-shrink-0">
+                            <a href="#" title="" class="flex">
+                                {% comment %} <div class="bg-[url('../paraphrasing/static_src/image/imageee.png')]w-auto h-8 lg:h-10"></div> {% endcomment %}
+                            </a>
+                        </div>
+                    </div>
+    
+                    <button type="button" class="flex items-center justify-center ml-auto text-white bg-black rounded-full w-9 h-9 lg:hidden">
+                        <svg class="w-5 h-5" img="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </button>
+    
+                    <button type="button" class="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
+                        <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+    
+                    <div class="hidden lg:flex lg:items-center lg:space-x-10">
+                        <a href="#" title="" class="text-base font-medium text-black"> Sign up </a>
+    
+                        <a href="#" title="" class="text-base font-medium text-black"> Sign in </a>
+    
+                        <a href="#" title="" class="flex items-center justify-center w-10 h-10 text-white bg-black rounded-full">
+                            <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </div>
-        <button type="submit" id="generate-btn">Generate</button>
-    </form>
-</body>
+    </div>    
+        
+    <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 m-5">
+        <div class="max-w-2xl mx-auto text-center">
+            <h2 class="text-4xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">Paraphrase Generator</h2>
+        </div>
+    </div>
+    {% comment %} <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css"> {% endcomment %}
+    <div class="box-border h-32 w-32 p-4 border-4 tex"></div>
+    
+<form method="post">
+    {% csrf_token %}
+    <div class="flex justify-center bg-indigo-100 m-9">
+        <div class="bg-gray-100 border border-gray-300 bg-left p-4 mr-4">
+        <h2 class="text-2xl font-bold leading-tight text-black sm:text-2xl lg:text-2xl">Our Sentence</h2>
+        <textarea class="w-full h-48 p-2 border border-gray-300" placeholder="Enter text here" id="input-text" name="input-text">{{ input_text }}</textarea>
+        </div>
+
+        <div class="bg-gray-100 border border-gray-300 bg-right p-4">
+        <h2 class="text-xl font-bold mb-4">Paraphrase</h2>
+        <textarea class="w-full h-48 p-2 border border-gray-300" placeholder="Enter text here" id="output-text" name="output-text" readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
+        </div>
+    </div>
+    <button type="submit" id="generate-btn">Generate</button>
+</form>
+
+
+
+    <div class="flex justify-center">
+        <div class="w-1/2 bg-gray-100 p-4 mr-4">
+          <h2 class="text-xl font-bold mb-4">Input Box</h2>
+          <textarea class="w-full h-64 p-2 border border-gray-300" placeholder="Enter text here"></textarea>
+        </div>
+        <div class="w-1/2 bg-gray-100 p-4">
+          <h2 class="text-xl font-bold mb-4">Output Box</h2>
+          <div class="output-textarea w-full h-64 p-2 border border-gray-300"></div>
+        </div>
+      </div>
+
+
+    <section class="py-10 bg-white sm:py-16 lg:py-20">
+        <div class="px-4 mx-auto sm:px-6 lg:px-8 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-12 lg:gap-x-8 xl:gap-x-20">
+                <div class="flex items-start">
+                    <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="1"
+                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        />
+                    </svg>
+                    <div class="ml-6">
+                        <p class="text-base font-medium text-black/50">Call us</p>
+                        <p class="mt-4 text-xl font-medium text-gray-900">(316) 555-0116</p>
+                        <p class="mt-1 text-xl font-medium text-gray-900">(316) 555-0117</p>
+                    </div>
+                </div>
+    
+                <div class="flex items-start">
+                    <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    <div class="ml-6">
+                        <p class="text-base font-medium text-black/50">Email us</p>
+                        <p class="mt-4 text-xl font-medium text-gray-900">contact@example.com</p>
+                        <p class="mt-1 text-xl font-medium text-gray-900">support@example.com</p>
+                    </div>
+                </div>
+    
+                <div class="flex items-start">
+                    <svg class="flex-shrink-0 w-10 h-10 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                    <div class="ml-6">
+                        <p class="text-base font-medium text-black/50">Location</p>
+                        <p class="mt-4 text-xl font-medium leading-relaxed text-gray-900">8502 Preston Rd. Inglewood, Maine 98380, USA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 </html>
