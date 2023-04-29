@@ -1,8 +1,7 @@
 {% load static tailwind_tags%}
 
 <!DOCTYPE html>
-<html lang="en">
-    
+<html lang="en"> 
     <head>
         <title class=>Generate Paraphrase</title>
         <meta charset="UTF-8">
@@ -22,7 +21,7 @@
     
                         <a href="#" title="" class="text-base font-medium text-black"> Language </a>
     
-                        <a href="#" title="" class="text-base font-medium text-black"> Pricing </a>
+                        {% comment %} <a href="#" title="" class="text-base font-medium text-black"> Pricing </a> {% endcomment %}
                     </div>
     
                     <div class="lg:absolute lg:-translate-x-1/2 lg:inset-y-5 lg:left-1/2">
@@ -33,11 +32,11 @@
                         </div>
                     </div>
     
-                    <button type="button" class="flex items-center justify-center ml-auto text-white bg-black rounded-full w-9 h-9 lg:hidden">
+                    {% comment %} <button type="button" class="flex items-center justify-center ml-auto text-white bg-black rounded-full w-9 h-9 lg:hidden">
                         <svg class="w-5 h-5" img="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                         </svg>
-                    </button>
+                    </button> {% endcomment %}
     
                     <button type="button" class="inline-flex p-2 ml-5 text-black transition-all duration-200 rounded-md lg:hidden focus:bg-gray-100 hover:bg-gray-100">
                         <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -50,11 +49,11 @@
     
                         <a href="#" title="" class="text-base font-medium text-black"> Sign in </a>
     
-                        <a href="#" title="" class="flex items-center justify-center w-10 h-10 text-white bg-black rounded-full">
+                        {% comment %} <a href="#" title="" class="flex items-center justify-center w-10 h-10 text-white bg-black rounded-full">
                             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                             </svg>
-                        </a>
+                        </a> {% endcomment %}
                     </div>
                 </nav>
             </div>
@@ -70,28 +69,30 @@
     
     <form method="post"> 
         {% csrf_token %}
-        <div class="flex justify-center bg-white content-end sm:py-16 lg:py-20">
-            <div class="border border-gray-300 rounded-lg">
-                <div class="flex justify-between space-x-2">
-                    <div class="bg-gray-200 p-4 rounded-lg" style="width: 600px; height: 400px;">
+        <div class="flex justify-center items-center bg-white py-10 sm:py-2">
+            <div class="border border-gray-300 rounded-lg w-full lg:w-2/3 xl:w-3/4">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-x-2 md:space-y-0" style="height: 400px;">
+                    <div style="height: 100%; width: 50%;" class="bg-gray-200 p-4 rounded-lg flex-grow">
                         <p class="text-lg font-bold">Enter Text</p>
-                        <textarea id="input-text" name="input-text" class="border w-full p-4 resize-none" style=" height: 320px">{{ input_text }}</textarea>
+                        <textarea id="input-text" name="input-text" class="border w-full p-4 resize-none h-full" style="min-height:90%">{{ input_text }}</textarea>
                     </div>
                     
-                    <div class="bg-gray-200 p-4 rounded-lg" style="width: 600px; height: 400px;">
+                    <div style="height: 100%; width: 50%;" class="bg-gray-200 p-4 rounded-lg flex-grow mx-auto">
                         <p class="text-lg font-bold">Paraphrase</p>
-                        <textarea id="output" name="output" class="border h-96 w-full p-4 resize-none" style=" height: 320px" readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
+                        <textarea id="output" name="output" class="border w-full p-4 resize-safe h-full" style="min-height:90% " readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <section class="flex justify-center bg-white content-end sm:py=5 lg:py-10">
-          <button type="submit" id="generate-btn" class="inline-flex justify-center items-center px-5 py-2.5 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
-            Generate
-          </button>
+        </div> 
+
+        <section class="flex justify-center bg-white col-end-auto lg:py-10 lg:pb-4 sm:py-10 pb-2">
+            <button type="submit" id="generate-btn" class="inline-flex justify-center items-center px-4 md:px-5 py-2 text-xs md:text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
+                Generate
+            </button>
         </section>
+        
     </form>
+              
 
 
 
@@ -120,5 +121,4 @@
             </div>
         </div>
     </section> {% endcomment %}
-    
 </html>
