@@ -74,23 +74,21 @@
                 <div class="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-x-2 md:space-y-0" style="height: 400px;">
                     <div style="height: 100%; width: 50%;" class="bg-gray-200 p-4 rounded-lg flex-grow">
                         <p class="text-lg font-bold">Enter Text</p>
-                        <textarea id="input-text" name="input-text" class="border w-full p-4 resize-none h-full" style="min-height:90%">{{ input_text }}</textarea>
+                        <textarea id="input-text" name="input-text" class="border w-full p-4 resize-none" style="min-height:330px">{{ input_text }}</textarea>
                     </div>
                     
                     <div style="height: 100%; width: 50%;" class="bg-gray-200 p-4 rounded-lg flex-grow mx-auto">
                         <p class="text-lg font-bold">Paraphrase</p>
-                        <textarea id="output" name="output" class="border w-full p-4 resize-safe h-full" style="min-height:90% " readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
+                        <textarea id="output" name="output" class="border w-full p-4 resize-safe" style="min-height:330px " readonly>{% if output_text %}{{ output_text }}{% endif %}</textarea>
                     </div>
                 </div>
             </div>
         </div> 
-
         <section class="flex justify-center bg-white col-end-auto lg:py-10 lg:pb-4 sm:py-10 pb-2">
             <button type="submit" id="generate-btn" class="inline-flex justify-center items-center px-4 md:px-5 py-2 text-xs md:text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
                 Generate
             </button>
         </section>
-        
     </form>
               
 
